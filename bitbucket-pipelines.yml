@@ -1,0 +1,12 @@
+image: hank660/image_kava_node:tag
+
+pipelines:
+  branches:
+    main:
+      - step:
+          name: "Deploy"
+          caches:
+            - node
+          script:
+            - suitecloud account:savetoken --authid TESTE_DEPLOY --account $NETSUITE_ACCOUNT --tokenid $NETSUITE_TOKEN_ID --tokensecret $NETSUITE_TOKEN_SECRET
+            - suitecloud project:deploy
